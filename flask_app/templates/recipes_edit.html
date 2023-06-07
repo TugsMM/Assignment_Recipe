@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <title>Plan A Party</title>
+</head>
+<style>
+    *{
+        padding: 5px;
+    }
+</style>
+<body>
+    <div class="container">
+        <div class="d-flex justify-content-between">
+            <div>
+                <h1>Edit Recipe!</h1>
+            </div>
+            <div>
+                <a href="/dashboard" class="btn btn-primary">back to recipes</a>
+                <a href="/dashboard" class="btn btn-primary">Home</a>
+            </div>
+        </div>
+        {% for message in get_flashed_messages()%}
+            <p class="text-danger">{{message}}</p>
+        {%endfor%}
+        <form action="/recipes/{{one_recipe.id}}/update" method="post">
+                <label for="recipe_name">Name</label>
+                <input type="text" name="recipe_name" id="recipe_name" value="{{one_recipe.recipe_name}}">
+                <label for="description">Description</label>
+                <textarea name="description" id="" cols="20" rows="5">{{one_recipe.description}}</textarea>
+                <label for="instructions">instructions</label>
+                <textarea name="instructions" id="" cols="20" rows="5">{{one_recipe.instructions}}</textarea>
+            <div>
+                <label for="date_cooked">Date Cooked</label>
+                <input type="date" name="date_cooked" id="date_cooked" value="{{one_recipe.date_cooked}}">
+                <p>Under 30 minutes?</p>
+                <label for="yes">Yes</label>
+                <input type="radio" name="under_30" id="yes" value="1" {%if one_recipe.under_30 == 1%} checked {%endif%}>
+                <label for="no">No</label>
+                <input type="radio" name="under_30" id="no" value="0"{%if one_recipe.under_30 == 0%} checked {%endif%}>
+            </div>
+            <button class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+    
+</body>
+</html>

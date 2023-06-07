@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <title>{{one_recipe.recipe_name}}</title>
+</head>
+<style>
+    *{
+        padding: 5px;
+    }
+</style>
+
+<body>
+
+    <div class="container">
+        <div class="d-flex justify-content-between">
+            <div>
+                <h1>Welcome, {{logged_user.first_name}}</h1>
+            </div>
+            <div>
+                <a href="/dashboard" class="btn btn-primary">back to recipes</a>
+                <a href="/users/logout" class="btn btn-danger">Log Out</a>
+            </div>
+        </div>
+        <div class="d-flex justify-content-between">
+            <h1>{{one_recipe.recipe_name}}</h1>
+            <h3>Posted by, {{one_recipe.planner.first_name}}</h3>
+        </div>
+        <div class="border border-dark">
+            <p>Description: {{one_recipe.description}}</p>
+            <p>Under 30 Minutes? {%if one_recipe.under_30 == 1%} Yes {%else%} No {%endif%}</p>
+            <p>instructions: {{one_recipe.instructions}}</p>
+            <p>Date Made: {{one_recipe.date_cooked}}</p>
+        </div>
+    </div>
+
+    
+</body>
+</html>
